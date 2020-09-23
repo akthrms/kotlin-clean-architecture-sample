@@ -5,9 +5,14 @@ import com.github.akthrms.sample_todo.domain.model.Todo
 import com.github.akthrms.sample_todo.usecase.repository.TodoRepositoryInterface
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
+import java.time.LocalDateTime
 
-interface TodoJpaRepositoryInterface : JpaRepository<Todo, Long>
+interface TodoJpaRepositoryInterface : JpaRepository<Todo, Long> {
+    @Query("select t from Todo t where t.deleted is null")
+    override fun findAll(): MutableList<Todo>
+}
 
 @Repository
 data class TodoRepository(
@@ -30,7 +35,7 @@ data class TodoRepository(
         return repository.save(todo)
     }
 
-    override fun deleteTodo(todo: Todo) {
-        return repository.delete(todo)
+    override fun deleteTodo(todo: Todo): Todo {
+        return repository.save(todo.copy(deleted = LocalDateTime.now()))
     }
 }

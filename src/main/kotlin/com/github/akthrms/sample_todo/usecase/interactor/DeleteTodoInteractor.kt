@@ -24,9 +24,9 @@ data class DeleteTodoInteractor(
 ) : DeleteTodoInputPortInterface {
     override fun interact(id: Long): String {
         val result = Option.fx {
-            val (todo) = todoRepository.getTodo(id)
-            todoRepository.deleteTodo(todo)
-            id
+            val todo = todoRepository.getTodo(id).bind()
+            val deletedTodo = todoRepository.deleteTodo(todo)
+            deletedTodo.id!!
         }
         return deleteTodoPresenter.present(result)
     }

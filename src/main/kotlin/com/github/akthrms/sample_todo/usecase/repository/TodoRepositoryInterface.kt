@@ -12,5 +12,5 @@ interface TodoRepositoryInterface {
 
     fun updateTodo(todo: Todo): Todo
 
-    fun deleteTodo(todo: Todo)
+    fun deleteTodo(todo: Todo): Todo
 }
