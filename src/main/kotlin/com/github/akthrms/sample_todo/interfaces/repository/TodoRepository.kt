@@ -1,5 +1,6 @@
 package com.github.akthrms.sample_todo.interfaces.repository
 
+import arrow.core.Option
 import com.github.akthrms.sample_todo.domain.model.Todo
 import com.github.akthrms.sample_todo.usecase.repository.TodoRepositoryInterface
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +18,11 @@ data class TodoRepository(
         return repository.save(todo)
     }
 
-    override fun getTodo(): List<Todo> {
+    override fun getTodo(id: Long): Option<Todo> {
+        return Option.fromNullable(repository.findById(id).orElse(null))
+    }
+
+    override fun getTodos(): List<Todo> {
         return repository.findAll()
     }
 

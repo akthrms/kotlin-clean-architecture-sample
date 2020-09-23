@@ -1,6 +1,7 @@
 package com.github.akthrms.sample_todo.domain.model
 
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -10,10 +11,15 @@ import javax.persistence.Table
 @Table(name = "todos")
 data class Todo(
     val content: String,
-    val createdAt: LocalDateTime = LocalDateTime.now(),
-    val updatedAt: LocalDateTime = LocalDateTime.now(),
-    val deletedAt: LocalDateTime? = null,
+    val created: LocalDateTime = LocalDateTime.now(),
+    val updated: LocalDateTime = LocalDateTime.now(),
+    val deleted: LocalDateTime? = null,
     @GeneratedValue
     @Id
     val id: Long? = null
-)
+) {
+    override fun toString(): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:MM:SS")
+        return "Todo(id=${id}, content=${content}, created=${created.format(formatter)}, updated=${updated.format(formatter)})"
+    }
+}
