@@ -1,1 +1,1 @@
-# kotlin-clean-architecture-sample
+# Kotlin - Clean Architecture Sample
