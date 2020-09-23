@@ -13,7 +13,7 @@ interface UpdateTodoInputPortInterface {
 }
 
 interface UpdateTodoOutputPortInterface {
-    fun present(maybeTodo: Option<Todo>): String
+    fun present(maybeId: Option<Long>): String
 }
 
 @Component
@@ -25,10 +25,10 @@ data class UpdateTodoInteractor(
 ) : UpdateTodoInputPortInterface {
     override fun interact(todo: Todo): String {
         val result = Option.fx {
-            val (todo) = todoRepository.getTodo(todo.id!!)
+            val (targetTodo) = todoRepository.getTodo(todo.id!!)
             todoRepository.updateTodo(
-                todo.copy(content = todo.content, updated = LocalDateTime.now())
-            )
+                targetTodo.copy(content = todo.content, updated = LocalDateTime.now())
+            ).id!!
         }
         return updateTodoPresenter.present(result)
     }

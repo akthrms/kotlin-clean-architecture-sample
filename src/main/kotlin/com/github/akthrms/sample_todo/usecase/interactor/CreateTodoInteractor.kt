@@ -10,7 +10,7 @@ interface CreateTodoInputPortInterface {
 }
 
 interface CreateTodoOutputPortInterface {
-    fun present(todo: Todo): String
+    fun present(id: Long): String
 }
 
 @Component
@@ -22,6 +22,6 @@ data class CreateTodoInteractor(
 ) : CreateTodoInputPortInterface {
     override fun interact(todo: Todo): String {
         val newTodo = todoRepository.createTodo(todo)
-        return createTodoPresenter.present(newTodo)
+        return createTodoPresenter.present(newTodo.id!!)
     }
 }

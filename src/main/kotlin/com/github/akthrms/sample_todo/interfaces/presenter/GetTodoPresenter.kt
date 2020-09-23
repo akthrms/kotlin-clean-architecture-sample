@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component
 @Component
 class GetTodoPresenter : GetTodoOutputPortInterface {
     override fun present(todos: List<Todo>): String {
-        return todos.toString()
+        return if (todos.isEmpty()) {
+            "todos is empty."
+        } else {
+            "exists ${todos.size} todos.\n${todos.joinToString("\n")}"
+        }
     }
 }

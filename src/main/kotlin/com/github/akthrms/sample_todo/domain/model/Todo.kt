@@ -20,6 +20,7 @@ data class Todo(
 ) {
     override fun toString(): String {
         val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:MM:SS")
-        return "Todo(id=${id}, content=${content}, created=${created.format(formatter)}, updated=${updated.format(formatter)})"
+        val format = { localDateTime: LocalDateTime -> localDateTime.format(formatter) }
+        return "Todo(id=${id}, content=${content}, created=${format(created)}, updated=${format(updated)})"
     }
 }
