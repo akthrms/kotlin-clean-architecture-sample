@@ -5,22 +5,22 @@ import com.github.akthrms.sample_todo.usecase.repository.TodoRepositoryInterface
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
-interface GetTodoInputPortInterface {
+interface GetTodosInputPortInterface {
     fun interact(): String
 }
 
-interface GetTodoOutputPortInterface {
+interface GetTodosOutputPortInterface {
     fun present(todos: List<Todo>): String
 }
 
 @Component
-data class GetTodoInteractor(
+data class GetTodosInteractor(
     @Autowired
     val todoRepository: TodoRepositoryInterface,
     @Autowired
-    val getTodoPresenter: GetTodoOutputPortInterface
-) : GetTodoInputPortInterface {
+    val getTodosPresenter: GetTodosOutputPortInterface
+) : GetTodosInputPortInterface {
     override fun interact(): String {
-        return getTodoPresenter.present(todoRepository.getTodos())
+        return getTodosPresenter.present(todoRepository.getTodos())
     }
 }
