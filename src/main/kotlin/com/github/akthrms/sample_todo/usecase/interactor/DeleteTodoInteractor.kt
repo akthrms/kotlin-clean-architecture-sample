@@ -18,6 +18,8 @@ interface DeleteTodoOutputPortInterface {
 data class DeleteTodoInteractor(
     @Autowired
     val todoRepository: TodoRepositoryInterface,
+
+    @Autowired
     val deleteTodoPresenter: DeleteTodoOutputPortInterface
 ) : DeleteTodoInputPortInterface {
     override fun interact(id: Long): String {

@@ -17,6 +17,7 @@ interface CreateTodoOutputPortInterface {
 data class CreateTodoInteractor(
     @Autowired
     val todoRepository: TodoRepositoryInterface,
+
     @Autowired
     val createTodoPresenter: CreateTodoOutputPortInterface
 ) : CreateTodoInputPortInterface {

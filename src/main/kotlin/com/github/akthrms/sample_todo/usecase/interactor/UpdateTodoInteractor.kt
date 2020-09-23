@@ -20,6 +20,7 @@ interface UpdateTodoOutputPortInterface {
 data class UpdateTodoInteractor(
     @Autowired
     val todoRepository: TodoRepositoryInterface,
+
     @Autowired
     val updateTodoPresenter: UpdateTodoOutputPortInterface
 ) : UpdateTodoInputPortInterface {

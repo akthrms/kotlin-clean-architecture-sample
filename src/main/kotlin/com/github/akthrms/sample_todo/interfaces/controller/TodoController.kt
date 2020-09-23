@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.*
 data class TodoController(
     @Autowired
     val createTodoUsecase: CreateTodoInputPortInterface,
+
     @Autowired
     val getTodosUsecase: GetTodosInputPortInterface,
+
     @Autowired
     val updateTodoUsecase: UpdateTodoInputPortInterface,
+
     @Autowired
     val deleteTodoUsecase: DeleteTodoInputPortInterface
 ) {

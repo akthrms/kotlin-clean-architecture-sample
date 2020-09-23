@@ -17,6 +17,7 @@ interface GetTodosOutputPortInterface {
 data class GetTodosInteractor(
     @Autowired
     val todoRepository: TodoRepositoryInterface,
+
     @Autowired
     val getTodosPresenter: GetTodosOutputPortInterface
 ) : GetTodosInputPortInterface {
