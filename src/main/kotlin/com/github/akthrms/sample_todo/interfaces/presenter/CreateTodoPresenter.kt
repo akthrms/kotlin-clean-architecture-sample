@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component
 @Component
 class CreateTodoPresenter : CreateTodoOutputPortInterface {
     override fun present(id: Long): String {
-        return "id: $id is created."
+        return "Ok: id $id is created."
     }
 }

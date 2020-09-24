@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class DeleteTodoPresenter : DeleteTodoOutputPortInterface {
     override fun present(maybeId: Option<Long>): String {
         return when (maybeId) {
-            is Some -> "id: ${maybeId.t} is deleted."
+            is Some -> "Ok: id ${maybeId.t} is deleted."
             is None -> "Err: no exists todo."
         }
     }

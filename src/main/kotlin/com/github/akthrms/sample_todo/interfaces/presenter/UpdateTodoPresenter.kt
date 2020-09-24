@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class UpdateTodoPresenter : UpdateTodoOutputPortInterface {
     override fun present(maybeId: Option<Long>): String {
         return when (maybeId) {
-            is Some -> "id: ${maybeId.t} is updated."
+            is Some -> "Ok: id ${maybeId.t} is updated."
             is None -> "Err: no exists todo."
         }
     }
