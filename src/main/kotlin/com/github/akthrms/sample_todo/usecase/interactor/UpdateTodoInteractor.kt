@@ -25,13 +25,13 @@ data class UpdateTodoInteractor(
     val updateTodoPresenter: UpdateTodoOutputPortInterface
 ) : UpdateTodoInputPortInterface {
     override fun interact(todo: Todo): String {
-        val result = Option.fx {
+        val maybeId = Option.fx {
             val targetTodo = todoRepository.getTodo(todo.id!!).bind()
             val updatedTodo = todoRepository.updateTodo(
                 targetTodo.copy(content = todo.content, updated = LocalDateTime.now())
             )
             updatedTodo.id!!
         }
-        return updateTodoPresenter.present(result)
+        return updateTodoPresenter.present(maybeId)
     }
 }

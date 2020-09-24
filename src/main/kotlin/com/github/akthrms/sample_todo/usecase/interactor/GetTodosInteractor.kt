@@ -22,6 +22,7 @@ data class GetTodosInteractor(
     val getTodosPresenter: GetTodosOutputPortInterface
 ) : GetTodosInputPortInterface {
     override fun interact(): String {
-        return getTodosPresenter.present(todoRepository.getTodos())
+        val todos = todoRepository.getTodos()
+        return getTodosPresenter.present(todos)
     }
 }
